@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="2d-platformer-movement-2"
-config/version="0.1"
+config/version="0.2"
 run/main_scene="uid://bw2g12hscoe1q"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://blmqi2fumpi0p"
@@ -47,6 +47,7 @@ move_left={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true
 
 [rendering]
 
