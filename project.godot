@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="2d-platformer-movement-2"
-config/version="0.2"
+config/version="0.3"
 run/main_scene="uid://bw2g12hscoe1q"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://blmqi2fumpi0p"
@@ -47,6 +47,11 @@ move_left={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"location":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="GroundLayer"
+2d_physics/layer_2="PlayerLayer"
 
 [physics]
 

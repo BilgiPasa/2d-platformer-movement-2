@@ -3,15 +3,29 @@
 [ext_resource type="Script" uid="uid://bulwh5h7s1quy" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dracr7g3qxgbp" path="res://Materials/Player.png" id="1_v0iea"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
+size = Vector2(2, 98)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(31, 31)
 
 [node name="Player" type="CharacterBody2D" unique_id=1068189543]
+collision_layer = 2
 script = ExtResource("1_cvnsp")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=275579699]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=275579699]
 scale = Vector2(0.31, 0.31)
 texture = ExtResource("1_v0iea")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1506225434]
+[node name="BumpArea" type="Area2D" parent="PlayerSprite" unique_id=531116762]
+collision_layer = 0
+
+[node name="BumpAreaCollShape" type="CollisionShape2D" parent="PlayerSprite/BumpArea" unique_id=1450235580]
+position = Vector2(51, 0)
+shape = SubResource("RectangleShape2D_6t5aa")
+
+[node name="PlayerCollShape" type="CollisionShape2D" parent="." unique_id=1506225434]
 shape = SubResource("RectangleShape2D_cvnsp")
+
+[connection signal="body_entered" from="PlayerSprite/BumpArea" to="." method="_on_bump_area_body_entered"]
+[connection signal="body_exited" from="PlayerSprite/BumpArea" to="." method="_on_bump_area_body_exited"]

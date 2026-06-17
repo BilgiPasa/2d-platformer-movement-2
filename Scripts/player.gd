@@ -1,6 +1,8 @@
+class_name Player
 extends CharacterBody2D
 
 # Horizontal Movement
+@onready var player_sprite: Sprite2D = $PlayerSprite
 const MOVE_SPEED: int = 500
 const START_MOVE_DELTA: float = 0.2
 const GROUND_STOP_DELTA: float = 0.2
@@ -9,6 +11,7 @@ const BUMP_STOP_DELTA: float = 0.3
 const MIN: float = 0.1
 var horizontal: float = 0
 var move_direction: float
+var looking_left: bool = false
 var bumping: bool
 
 # Jump
@@ -32,8 +35,16 @@ func _physics_process(delta: float) -> void:
 	# * Handle horizontal movement
 	if move_direction > 0:
 		horizontal = move_toward(horizontal, 1, START_MOVE_DELTA)
+
+		if looking_left:
+			flip()
+
 	elif move_direction < 0:
 		horizontal = move_toward(horizontal, -1, START_MOVE_DELTA)
+
+		if !looking_left:
+			flip()
+
 	else:
 		if !bumping:
 			if grounded:
@@ -104,3 +115,13 @@ func jump() -> void:
 	velocity.y = -JUMP_POWER # In Godot's 2D plane, Y vector increases as you go down.
 	coyote_time_counter = 0
 	jump_buffer_counter = 0
+
+func flip() -> void:
+	player_sprite.scale.x *= -1
+	looking_left = !looking_left
+
+func _on_bump_area_body_entered(_body: Node2D) -> void:
+	bumping = true
+
+func _on_bump_area_body_exited(_body: Node2D) -> void:
+	bumping = false
