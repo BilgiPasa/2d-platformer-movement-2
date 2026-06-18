@@ -1,3 +1,4 @@
 extends Node
 
-var can_double_jump = false
+var game_paused: bool = false
+var can_double_jump: bool = false

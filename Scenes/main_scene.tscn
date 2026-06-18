@@ -17,8 +17,9 @@ sources/0 = SubResource("TileSetAtlasSource_jv6wh")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iacmt"]
 
-[node name="MainScene" type="Node2D" unique_id=915812056]
+[node name="MainScene" type="Node2D" unique_id=915812056 node_paths=PackedStringArray("pause_menu")]
 script = ExtResource("1_52fb6")
+pause_menu = NodePath("CanvasLayer/PauseMenu")
 
 [node name="Player" parent="." unique_id=1068189543 instance=ExtResource("3_x6ack")]
 
@@ -49,3 +50,6 @@ shape = SubResource("WorldBoundaryShape2D_iacmt")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=447177435]
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1267843331 instance=ExtResource("5_iacmt")]
+visible = false
+
+[connection signal="resume_game" from="CanvasLayer/PauseMenu" to="." method="_on_pause_menu_resume_game"]
