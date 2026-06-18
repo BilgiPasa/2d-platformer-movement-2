@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://oug152fug1t3"]
+
+[node name="PauseMenu" type="Control" unique_id=1267843331]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1598775993]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GamePausedLabel" type="Label" parent="Panel" unique_id=742333126]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -297.5
+offset_top = 225.0
+offset_right = 297.5
+offset_bottom = 349.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 100
+text = "Game Paused"
+
+[node name="ResumeButton" type="Button" parent="Panel" unique_id=1425866984]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.5
+offset_top = -115.0
+offset_right = 197.5
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="Panel" unique_id=1923098488]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = 85.0
+offset_right = 186.0
+offset_bottom = 189.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Quit Game"
+
+[node name="ShowSpeedButton" type="Button" parent="Panel" unique_id=345498973]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 125.0
+offset_top = -180.0
+offset_right = 482.0
+offset_bottom = -89.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Show Speed"
+
+[node name="EnableDJumpButton" type="Button" parent="Panel" unique_id=588773477]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -296.0
+offset_top = -180.0
+offset_right = 296.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Enable Double Jump"
+
+[node name="EnableDashButton" type="Button" parent="Panel" unique_id=1337906931]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -490.0
+offset_top = -180.0
+offset_right = -125.0
+offset_bottom = -89.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Enable Dash"

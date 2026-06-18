@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ujv8514o52dc" path="res://Materials/green_square.png" id="2_jv6wh"]
 [ext_resource type="PackedScene" uid="uid://byhlrjt50il1g" path="res://Scenes/player.tscn" id="3_x6ack"]
 [ext_resource type="PhysicsMaterial" uid="uid://0xknejgmkdvr" path="res://Materials/no_friction_and_bounciness.tres" id="4_x6ack"]
+[ext_resource type="PackedScene" uid="uid://oug152fug1t3" path="res://Scenes/pause_menu.tscn" id="5_iacmt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jv6wh"]
 texture = ExtResource("2_jv6wh")
@@ -44,3 +45,7 @@ physics_material_override = ExtResource("4_x6ack")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder" unique_id=1700822389]
 shape = SubResource("WorldBoundaryShape2D_iacmt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=447177435]
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1267843331 instance=ExtResource("5_iacmt")]
