@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkqtxxhg30nid" path="res://Scripts/pause_menu.gd" id="1_emv3i"]
 
-[node name="PauseMenu" type="Control" unique_id=1267843331 node_paths=PackedStringArray("resume_button")]
+[node name="PauseMenu" type="Control" unique_id=1267843331 node_paths=PackedStringArray("resume_button", "show_speed_button", "enable_d_jump_btn", "version_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +11,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_emv3i")
 resume_button = NodePath("Panel/ResumeButton")
+show_speed_button = NodePath("Panel/ShowSpeedButton")
+enable_d_jump_btn = NodePath("Panel/EnableDJumpBtn")
+version_label = NodePath("Panel/VersionLabel")
 
 [node name="Panel" type="Panel" parent="." unique_id=1598775993]
 layout_mode = 1
@@ -65,7 +68,7 @@ offset_bottom = 189.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_top = NodePath("../ResumeButton")
-focus_neighbor_bottom = NodePath("../EnableDJumpButton")
+focus_neighbor_bottom = NodePath("../EnableDJumpBtn")
 focus_next = NodePath("../ShowSpeedButton")
 focus_previous = NodePath("../ResumeButton")
 theme_override_font_sizes/font_size = 70
@@ -82,8 +85,8 @@ offset_right = 507.0
 offset_bottom = -100.0
 grow_vertical = 0
 focus_neighbor_top = NodePath("../QuitGameButton")
-focus_neighbor_right = NodePath("../EnableDJumpButton")
-focus_next = NodePath("../EnableDJumpButton")
+focus_neighbor_right = NodePath("../EnableDJumpBtn")
+focus_next = NodePath("../EnableDJumpBtn")
 theme_override_font_sizes/font_size = 60
 text = "Show Speed"
 
@@ -103,7 +106,7 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 25
 text = "(Horizontal Speed)"
 
-[node name="EnableDJumpButton" type="Button" parent="Panel" unique_id=588773477]
+[node name="EnableDJumpBtn" type="Button" parent="Panel" unique_id=588773477]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -141,3 +144,5 @@ text = "vA.B"
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Panel/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
+[connection signal="pressed" from="Panel/ShowSpeedButton" to="." method="_on_show_speed_button_pressed"]
+[connection signal="pressed" from="Panel/EnableDJumpBtn" to="." method="_on_enable_d_jump_btn_pressed"]

@@ -1,4 +1,3 @@
-class_name Player
 extends CharacterBody2D
 
 # Horizontal Movement
@@ -7,7 +6,7 @@ const MOVE_SPEED: int = 500
 const START_MOVE_DELTA: float = 0.2
 const GROUND_STOP_DELTA: float = 0.2
 const AIR_STOP_DELTA: float = 0.1
-const BUMP_STOP_DELTA: float = 0.3
+const BUMP_STOP_DELTA: float = 0.5
 const MIN: float = 0.1
 var horizontal: float = 0
 var move_direction: float
@@ -75,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	#print("velocity.x = " + str(velocity.x) + "\nhorizontal = " + str(horizontal) + "\n")
 
 	# * Handle ground detection
-	grounded = is_on_floor() # is_on_floor() is a built-in function for character controller.
+	grounded = is_on_floor() # is_on_floor() is a built-in function for CharacterBody2D.
 
 	# * Handle jump buffer
 	if jump_buffer_counter <= 0:
@@ -109,7 +108,7 @@ func _physics_process(delta: float) -> void:
 		double_jumped = true
 		jump()
 
-	move_and_slide() # Godot's built-in function to run the character controller.
+	move_and_slide() # Godot's built-in function to run the CharacterBody2D.
 
 func jump() -> void:
 	velocity.y = -JUMP_POWER # In Godot's 2D plane, Y vector increases as you go down.
