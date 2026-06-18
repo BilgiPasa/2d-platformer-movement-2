@@ -21,6 +21,7 @@ const COTOYE_TIME_SECONDS: float = 0.1
 const JUMP_BUFFER_SECONDS: float = 0.2
 var coyote_time_counter: float
 var jump_buffer_counter: float
+var released_jump: bool = false
 var grounded: bool
 var double_jumped: bool
 
@@ -29,6 +30,10 @@ func _process(_delta):
 
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_counter = JUMP_BUFFER_SECONDS # Reset jump buffer
+		released_jump = false # Reset released_jump
+
+	if Input.is_action_just_released("jump"):
+		released_jump = true
 
 func _physics_process(delta: float) -> void:
 	# * Handle horizontal movement
@@ -107,6 +112,11 @@ func _physics_process(delta: float) -> void:
 		# TODO: Play the double jump sound here
 		double_jumped = true
 		jump()
+
+	# * Variable jump height
+	if released_jump && velocity.y < MIN:
+		released_jump = false
+		velocity.y /= 2
 
 	move_and_slide() # Godot's built-in function to run the CharacterBody2D.
 
