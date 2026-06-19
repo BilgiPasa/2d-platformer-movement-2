@@ -11,7 +11,7 @@ signal hide_speed_lbl
 var show_speed_button_is_on: bool = false
 var enable_d_jump_btn_is_on: bool = false
 
-func _ready():
+func _ready() -> void:
 	version_label.text = "v" + str(ProjectSettings.get_setting("application/config/version"))
 
 func _on_visibility_changed() -> void:

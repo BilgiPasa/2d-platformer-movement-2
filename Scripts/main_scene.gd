@@ -4,7 +4,7 @@ extends Node2D
 @export var pause_menu: Control
 @export var speed_label: Label
 
-func _ready():
+func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	pause_menu.process_mode = Node.PROCESS_MODE_DISABLED
@@ -19,7 +19,7 @@ func _input(event) -> void:
 		else:
 			resume()
 
-func _physics_process(_delta):
+func _physics_process(_delta) -> void:
 	if speed_label.visible:
 		speed_label.text = "Speed: %.1f" % abs(player.velocity.x)
 

@@ -26,7 +26,7 @@ var released_jump: bool = false
 var grounded: bool
 var double_jumped: bool
 
-func _process(_delta):
+func _process(_delta) -> void:
 	move_direction = Input.get_axis("move_left", "move_right") # Get horizontal inputs
 
 	if Input.is_action_just_pressed("jump"):
@@ -43,13 +43,11 @@ func _physics_process(delta: float) -> void:
 
 		if looking_left:
 			flip()
-
 	elif move_direction < 0:
 		horizontal = move_toward(horizontal, -1, START_MOVE_DELTA)
 
 		if !looking_left:
 			flip()
-
 	else:
 		if !bumping:
 			if grounded:
@@ -99,7 +97,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			coyote_time_counter -= delta
 
-		# * Add the gravity based on player's Y speed
+		# * Handle gravity based on player's Y speed
 		if (velocity.y > 0): # In Godot's 2D plane, Y vector increases as you go down.
 			velocity += FAST_FALL_GRAVITY * delta * Vector2.DOWN
 		else:
