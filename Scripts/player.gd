@@ -12,6 +12,7 @@ var horizontal: float = 0
 var move_direction: float
 var looking_left: bool = false
 var bumping: bool
+var bumped_body: Node2D = null
 
 # Jump
 const JUMP_POWER: int = 750
@@ -129,8 +130,11 @@ func flip() -> void:
 	player_sprite.scale.x *= -1
 	looking_left = !looking_left
 
-func _on_bump_area_body_entered(_body: Node2D) -> void:
+func _on_bump_area_body_entered(body: Node2D) -> void:
+	bumped_body = body
 	bumping = true
 
-func _on_bump_area_body_exited(_body: Node2D) -> void:
-	bumping = false
+func _on_bump_area_body_exited(body: Node2D) -> void:
+	if body == bumped_body:
+		bumped_body = null
+		bumping = false

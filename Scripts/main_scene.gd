@@ -20,7 +20,7 @@ func _input(event) -> void:
 			resume()
 
 func _physics_process(_delta):
-	if speed_label.process_mode != ProcessMode.PROCESS_MODE_DISABLED:
+	if speed_label.visible:
 		speed_label.text = "Speed: %.1f" % abs(player.velocity.x)
 
 func pause() -> void:
