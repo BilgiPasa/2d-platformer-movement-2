@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 # Horizontal Movement
@@ -27,6 +28,9 @@ var jump_buffer_counter: float
 var released_jump: bool = false
 var grounded: bool
 var double_jumped: bool
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _process(_delta) -> void:
 	move_direction = Input.get_axis("move_left", "move_right") # Get horizontal inputs

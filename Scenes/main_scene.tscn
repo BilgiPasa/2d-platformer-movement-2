@@ -57,7 +57,7 @@ offset_top = 20.0
 offset_right = 306.0
 offset_bottom = 89.0
 theme_override_font_sizes/font_size = 50
-text = "Speed: xy.z"
+text = "Speed: x"
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1267843331 instance=ExtResource("5_iacmt")]
 visible = false

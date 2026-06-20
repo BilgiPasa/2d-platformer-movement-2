@@ -13,7 +13,7 @@ config_version=5
 config/name="2d-platformer-movement-2"
 config/version="1.2"
 run/main_scene="uid://bw2g12hscoe1q"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://blmqi2fumpi0p"
 
 [autoload]
