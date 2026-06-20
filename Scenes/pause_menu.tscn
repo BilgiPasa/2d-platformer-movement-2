@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkqtxxhg30nid" path="res://Scripts/pause_menu.gd" id="1_emv3i"]
 
-[node name="PauseMenu" type="Control" unique_id=1267843331 node_paths=PackedStringArray("resume_button", "show_speed_button", "enable_d_jump_btn", "version_label")]
+[node name="PauseMenu" type="Control" unique_id=1267843331 node_paths=PackedStringArray("resume_button", "show_speed_button", "enable_d_jump_btn", "mute_sounds_btn", "version_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ script = ExtResource("1_emv3i")
 resume_button = NodePath("Panel/ResumeButton")
 show_speed_button = NodePath("Panel/ShowSpeedButton")
 enable_d_jump_btn = NodePath("Panel/EnableDJumpBtn")
+mute_sounds_btn = NodePath("Panel/MuteSoundsBtn")
 version_label = NodePath("Panel/VersionLabel")
 
 [node name="Panel" type="Panel" parent="." unique_id=1598775993]
@@ -125,6 +126,22 @@ focus_previous = NodePath("../ShowSpeedButton")
 theme_override_font_sizes/font_size = 60
 text = "Enable Double Jump"
 
+[node name="MuteSoundsBtn" type="Button" parent="Panel" unique_id=1324146529]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -488.0
+offset_top = -191.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Mute Sounds"
+
 [node name="VersionLabel" type="Label" parent="Panel" unique_id=819276671]
 layout_mode = 1
 anchors_preset = 3
@@ -146,3 +163,4 @@ text = "vA.B"
 [connection signal="pressed" from="Panel/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
 [connection signal="pressed" from="Panel/ShowSpeedButton" to="." method="_on_show_speed_button_pressed"]
 [connection signal="pressed" from="Panel/EnableDJumpBtn" to="." method="_on_enable_d_jump_btn_pressed"]
+[connection signal="pressed" from="Panel/MuteSoundsBtn" to="." method="_on_mute_sounds_btn_pressed"]

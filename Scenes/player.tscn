@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bulwh5h7s1quy" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dracr7g3qxgbp" path="res://Materials/Player.png" id="1_v0iea"]
+[ext_resource type="AudioStream" uid="uid://dch44wgcxbrff" path="res://Materials/Jump11.wav" id="3_vgqql"]
+[ext_resource type="AudioStream" uid="uid://dxswwfk517ody" path="res://Materials/Jump12.wav" id="4_fkybt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(2, 98)
@@ -26,6 +28,14 @@ shape = SubResource("RectangleShape2D_6t5aa")
 
 [node name="PlayerCollShape" type="CollisionShape2D" parent="." unique_id=1506225434]
 shape = SubResource("RectangleShape2D_cvnsp")
+
+[node name="NormalJumpSound" type="AudioStreamPlayer2D" parent="." unique_id=1074437432]
+stream = ExtResource("3_vgqql")
+volume_db = -10.0
+
+[node name="DoubleJumpSound" type="AudioStreamPlayer2D" parent="." unique_id=1650346067]
+stream = ExtResource("4_fkybt")
+volume_db = -10.0
 
 [connection signal="body_entered" from="PlayerSprite/BumpArea" to="." method="_on_bump_area_body_entered"]
 [connection signal="body_exited" from="PlayerSprite/BumpArea" to="." method="_on_bump_area_body_exited"]

@@ -15,6 +15,8 @@ var bumping: bool
 var bumped_body: Node2D = null
 
 # Jump
+@onready var normal_jump_sound: AudioStreamPlayer2D = $NormalJumpSound
+@onready var double_jump_sound: AudioStreamPlayer2D = $DoubleJumpSound
 const JUMP_POWER: int = 750
 const NORMAL_GRAVITY: int = 2500
 const FAST_FALL_GRAVITY: int = 3000
@@ -105,11 +107,11 @@ func _physics_process(delta: float) -> void:
 
 	# * Handle jump
 	if jump_buffer_counter > 0 && coyote_time_counter > 0: # Normal jump
-		# TODO: Play the normal jump sound here
+		normal_jump_sound.play()
 		jump()
 	elif Globals.can_double_jump && !double_jumped && jump_buffer_counter > 0 && !(coyote_time_counter > 0): # Double jump
-		# TODO: Play the double jump sound here
 		double_jumped = true
+		double_jump_sound.play()
 		jump()
 
 	# * Variable jump height

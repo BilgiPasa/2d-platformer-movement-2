@@ -7,9 +7,9 @@ signal hide_speed_lbl
 @export var resume_button: Button
 @export var show_speed_button: Button
 @export var enable_d_jump_btn: Button
+@export var mute_sounds_btn: Button
 @export var version_label: Label
 var show_speed_button_is_on: bool = false
-var enable_d_jump_btn_is_on: bool = false
 
 func _ready() -> void:
 	version_label.text = "v" + str(ProjectSettings.get_setting("application/config/version"))
@@ -28,21 +28,29 @@ func quit_game() -> void:
 	get_tree().quit()
 
 func _on_show_speed_button_pressed() -> void:
-	if show_speed_button_is_on:
+	if show_speed_button_is_on: # Hide
 		show_speed_button_is_on = false
 		hide_speed_lbl.emit()
 		show_speed_button.text = "Show Speed"
-	else:
+	else: # Show
 		show_speed_button_is_on = true
 		show_speed_lbl.emit()
 		show_speed_button.text = "Hide Speed"
 
 func _on_enable_d_jump_btn_pressed() -> void:
-	if enable_d_jump_btn_is_on:
-		enable_d_jump_btn_is_on = false
+	if Globals.can_double_jump: # Disable
 		Globals.can_double_jump = false
 		enable_d_jump_btn.text = "Enable Double Jump"
-	else:
-		enable_d_jump_btn_is_on = true
+	else: # Enable
 		Globals.can_double_jump = true
 		enable_d_jump_btn.text = "Disable Double Jump"
+
+func _on_mute_sounds_btn_pressed() -> void:
+	if Globals.sounds_muted: # Unmute
+		Globals.sounds_muted = false
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)
+		mute_sounds_btn.text = "Mute Sounds"
+	else: # Mute
+		Globals.sounds_muted = true
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
+		mute_sounds_btn.text = "Unmute Sounds"
