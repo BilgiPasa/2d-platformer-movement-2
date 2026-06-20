@@ -88,6 +88,7 @@ grow_vertical = 0
 focus_neighbor_top = NodePath("../QuitGameButton")
 focus_neighbor_right = NodePath("../EnableDJumpBtn")
 focus_next = NodePath("../EnableDJumpBtn")
+focus_previous = NodePath("../QuitGameButton")
 theme_override_font_sizes/font_size = 60
 text = "Show Speed"
 
@@ -122,6 +123,8 @@ grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_left = NodePath("../ShowSpeedButton")
 focus_neighbor_top = NodePath("../QuitGameButton")
+focus_neighbor_right = NodePath("../MuteSoundsBtn")
+focus_next = NodePath("../MuteSoundsBtn")
 focus_previous = NodePath("../ShowSpeedButton")
 theme_override_font_sizes/font_size = 60
 text = "Enable Double Jump"
@@ -139,6 +142,9 @@ offset_right = -100.0
 offset_bottom = -100.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_neighbor_left = NodePath("../EnableDJumpBtn")
+focus_neighbor_top = NodePath("../QuitGameButton")
+focus_previous = NodePath("../EnableDJumpBtn")
 theme_override_font_sizes/font_size = 60
 text = "Mute Sounds"
 
