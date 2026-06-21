@@ -5,11 +5,10 @@ signal show_speed_lbl
 signal hide_speed_lbl
 
 @export var resume_button: Button
-@export var show_speed_button: Button
+@export var hide_speed_button: Button
 @export var enable_d_jump_btn: Button
 @export var mute_sounds_btn: Button
 @export var version_label: Label
-var show_speed_button_is_on: bool = false
 
 func _ready() -> void:
 	version_label.text = "v" + str(ProjectSettings.get_setting("application/config/version"))
@@ -27,15 +26,15 @@ func _on_quit_game_button_pressed() -> void:
 func quit_game() -> void:
 	get_tree().quit()
 
-func _on_show_speed_button_pressed() -> void:
-	if show_speed_button_is_on: # Hide
-		show_speed_button_is_on = false
-		hide_speed_lbl.emit()
-		show_speed_button.text = "Show Speed"
-	else: # Show
-		show_speed_button_is_on = true
+func _on_hide_speed_button_pressed() -> void:
+	if Globals.speed_label_is_hidden: # Show
+		Globals.speed_label_is_hidden = false
 		show_speed_lbl.emit()
-		show_speed_button.text = "Hide Speed"
+		hide_speed_button.text = "Hide Speed"
+	else: # Hide
+		Globals.speed_label_is_hidden = true
+		hide_speed_lbl.emit()
+		hide_speed_button.text = "Show Speed"
 
 func _on_enable_d_jump_btn_pressed() -> void:
 	if Globals.can_double_jump: # Disable

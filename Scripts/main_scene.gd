@@ -6,10 +6,10 @@ extends Node2D
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	speed_label.process_mode = Node.PROCESS_MODE_INHERIT
+	speed_label.show()
 	pause_menu.process_mode = Node.PROCESS_MODE_DISABLED
 	pause_menu.hide()
-	speed_label.process_mode = Node.PROCESS_MODE_DISABLED
-	speed_label.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event) -> void:
@@ -25,19 +25,19 @@ func _physics_process(_delta) -> void:
 
 func pause() -> void:
 	get_tree().paused = true
+	speed_label.process_mode = Node.PROCESS_MODE_DISABLED
 	pause_menu.process_mode = Node.PROCESS_MODE_INHERIT
 	pause_menu.show()
-	speed_label.process_mode = Node.PROCESS_MODE_DISABLED
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func resume() -> void:
 	get_tree().paused = false
-	pause_menu.process_mode = Node.PROCESS_MODE_DISABLED
-	pause_menu.hide()
 
 	if speed_label.visible:
 		speed_label.process_mode = Node.PROCESS_MODE_INHERIT
 
+	pause_menu.process_mode = Node.PROCESS_MODE_DISABLED
+	pause_menu.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_pause_menu_resume_game() -> void:
