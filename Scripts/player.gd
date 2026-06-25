@@ -2,7 +2,6 @@ class_name Player
 extends CharacterBody2D
 
 # Horizontal Movement
-@onready var player_sprite: Sprite2D = $PlayerSprite
 const MOVE_SPEED: int = 500
 const START_MOVE_DELTA: float = 0.2
 const GROUND_STOP_DELTA: float = 0.2
@@ -13,11 +12,8 @@ var horizontal: float = 0
 var move_direction: float
 var looking_left: bool = false
 var bumping: bool
-var bumped_body: Node2D = null
 
 # Jump
-@onready var normal_jump_sound: AudioStreamPlayer2D = $NormalJumpSound
-@onready var double_jump_sound: AudioStreamPlayer2D = $DoubleJumpSound
 const JUMP_POWER: int = 750
 const NORMAL_GRAVITY: int = 2500
 const FAST_FALL_GRAVITY: int = 3000
@@ -28,6 +24,12 @@ var jump_buffer_counter: float
 var released_jump: bool = false
 var grounded: bool
 var double_jumped: bool
+
+# @export Variables
+@export var player_sprite: Sprite2D
+@export var bump_area: Area2D
+@export var normal_jump_sound: AudioStreamPlayer2D
+@export var double_jump_sound: AudioStreamPlayer2D
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -80,11 +82,11 @@ func _physics_process(delta: float) -> void:
 
 	velocity.x = horizontal * MOVE_SPEED
 
-	# For testing
-	#print("velocity.x = " + str(velocity.x) + "\nhorizontal = " + str(horizontal) + "\n")
-
 	# * Handle ground detection
 	grounded = is_on_floor() # is_on_floor() is a built-in function for CharacterBody2D.
+
+	# * Handle bump detection
+	bumping = bump_area.has_overlapping_bodies()
 
 	# * Handle jump buffer
 	if jump_buffer_counter <= 0:
@@ -119,7 +121,7 @@ func _physics_process(delta: float) -> void:
 		jump()
 
 	# * Variable jump height
-	if released_jump && velocity.y < MIN:
+	if released_jump && velocity.y < -MIN: # In Godot's 2D plane, Y vector decreases as you go up.
 		released_jump = false
 		velocity.y /= 2
 
@@ -133,12 +135,3 @@ func jump() -> void:
 func flip() -> void:
 	player_sprite.scale.x *= -1
 	looking_left = !looking_left
-
-func _on_bump_area_body_entered(body: Node2D) -> void:
-	bumped_body = body
-	bumping = true
-
-func _on_bump_area_body_exited(body: Node2D) -> void:
-	if body == bumped_body:
-		bumped_body = null
-		bumping = false

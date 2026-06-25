@@ -11,19 +11,23 @@ size = Vector2(2, 98)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
 size = Vector2(31, 31)
 
-[node name="Player" type="CharacterBody2D" unique_id=1068189543]
+[node name="Player" type="CharacterBody2D" unique_id=1068189543 node_paths=PackedStringArray("player_sprite", "bump_area", "normal_jump_sound", "double_jump_sound")]
 collision_layer = 2
 script = ExtResource("1_cvnsp")
+player_sprite = NodePath("PlayerSprite")
+bump_area = NodePath("PlayerSprite/BumpArea")
+normal_jump_sound = NodePath("NormalJumpSound")
+double_jump_sound = NodePath("DoubleJumpSound")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=275579699]
 scale = Vector2(0.31, 0.31)
 texture = ExtResource("1_v0iea")
 
 [node name="BumpArea" type="Area2D" parent="PlayerSprite" unique_id=531116762]
-collision_layer = 0
+position = Vector2(50, 0)
+collision_layer = 2
 
 [node name="BumpAreaCollShape" type="CollisionShape2D" parent="PlayerSprite/BumpArea" unique_id=1450235580]
-position = Vector2(51, 0)
 shape = SubResource("RectangleShape2D_6t5aa")
 
 [node name="PlayerCollShape" type="CollisionShape2D" parent="." unique_id=1506225434]
@@ -36,6 +40,3 @@ volume_db = -10.0
 [node name="DoubleJumpSound" type="AudioStreamPlayer2D" parent="." unique_id=1650346067]
 stream = ExtResource("4_fkybt")
 volume_db = -10.0
-
-[connection signal="body_entered" from="PlayerSprite/BumpArea" to="." method="_on_bump_area_body_entered"]
-[connection signal="body_exited" from="PlayerSprite/BumpArea" to="." method="_on_bump_area_body_exited"]

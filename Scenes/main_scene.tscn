@@ -17,11 +17,11 @@ sources/0 = SubResource("TileSetAtlasSource_jv6wh")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iacmt"]
 
-[node name="MainScene" type="Node2D" unique_id=915812056 node_paths=PackedStringArray("player", "pause_menu", "speed_label")]
+[node name="MainScene" type="Node2D" unique_id=915812056 node_paths=PackedStringArray("player", "speed_label", "pause_menu")]
 script = ExtResource("1_52fb6")
 player = NodePath("Player")
-pause_menu = NodePath("CanvasLayer/PauseMenu")
 speed_label = NodePath("CanvasLayer/SpeedLabel")
+pause_menu = NodePath("CanvasLayer/PauseMenu")
 
 [node name="Player" parent="." unique_id=1068189543 instance=ExtResource("3_x6ack")]
 

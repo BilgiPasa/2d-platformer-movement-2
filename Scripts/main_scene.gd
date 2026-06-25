@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var player: Player
-@export var pause_menu: Control
 @export var speed_label: Label
+@export var pause_menu: Control
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
