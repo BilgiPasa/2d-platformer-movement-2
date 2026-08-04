@@ -10,14 +10,14 @@ const BUMP_STOP_DELTA: float = 0.5
 const MIN: float = 0.1
 var horizontal: float = 0
 var move_direction: float
-var looking_left: bool = false
+var looking_right: bool = true
 var bumping: bool
 
 # Jump
 const JUMP_POWER: int = 750
 const NORMAL_GRAVITY: int = 2500
 const FAST_FALL_GRAVITY: int = 3000
-const COTOYE_TIME_SECONDS: float = 0.1
+const COYOTE_TIME_SECONDS: float = 0.1
 const JUMP_BUFFER_SECONDS: float = 0.2
 var coyote_time_counter: float
 var jump_buffer_counter: float
@@ -46,37 +46,36 @@ func _process(_delta) -> void:
 
 func _physics_process(delta: float) -> void:
 	# * Handle horizontal movement
-	if move_direction > 0:
+	if move_direction > 0: # If player is moving right
 		horizontal = move_toward(horizontal, 1, START_MOVE_DELTA)
 
-		if looking_left:
+		if !looking_right:
 			flip()
-	elif move_direction < 0:
+	elif move_direction < 0: # If player is moving left
 		horizontal = move_toward(horizontal, -1, START_MOVE_DELTA)
 
-		if !looking_left:
+		if looking_right:
 			flip()
 	else:
-		if !bumping:
-			if grounded:
-				if horizontal > MIN:
-					horizontal = move_toward(horizontal, 0, GROUND_STOP_DELTA)
-				elif horizontal < -MIN:
-					horizontal = move_toward(horizontal, 0, GROUND_STOP_DELTA)
-				else:
-					horizontal = 0
-			else:
-				if horizontal > MIN:
-					horizontal = move_toward(horizontal, 0, AIR_STOP_DELTA)
-				elif horizontal < -MIN:
-					horizontal = move_toward(horizontal, 0, AIR_STOP_DELTA)
-				else:
-					horizontal = 0
-		else:
+		if bumping:
 			if horizontal > MIN:
 				horizontal = move_toward(horizontal, 0, BUMP_STOP_DELTA)
 			elif horizontal < -MIN:
 				horizontal = move_toward(horizontal, 0, BUMP_STOP_DELTA)
+			else:
+				horizontal = 0
+		elif grounded:
+			if horizontal > MIN:
+				horizontal = move_toward(horizontal, 0, GROUND_STOP_DELTA)
+			elif horizontal < -MIN:
+				horizontal = move_toward(horizontal, 0, GROUND_STOP_DELTA)
+			else:
+				horizontal = 0
+		else:
+			if horizontal > MIN:
+				horizontal = move_toward(horizontal, 0, AIR_STOP_DELTA)
+			elif horizontal < -MIN:
+				horizontal = move_toward(horizontal, 0, AIR_STOP_DELTA)
 			else:
 				horizontal = 0
 
@@ -96,7 +95,7 @@ func _physics_process(delta: float) -> void:
 
 	if grounded:
 		# * Reset coyote time and double jump
-		coyote_time_counter = COTOYE_TIME_SECONDS
+		coyote_time_counter = COYOTE_TIME_SECONDS
 		double_jumped = false
 	else:
 		# * Handle coyote time
@@ -106,7 +105,7 @@ func _physics_process(delta: float) -> void:
 			coyote_time_counter -= delta
 
 		# * Handle gravity based on player's Y speed
-		if (velocity.y > 0): # In Godot's 2D plane, Y vector increases as you go down.
+		if velocity.y > 0: # In Godot's 2D plane, Y vector increases as you go down.
 			velocity += FAST_FALL_GRAVITY * delta * Vector2.DOWN
 		else:
 			velocity += NORMAL_GRAVITY * delta * Vector2.DOWN
@@ -134,4 +133,4 @@ func jump() -> void:
 
 func flip() -> void:
 	player_sprite.scale.x *= -1
-	looking_left = !looking_left
+	looking_right = !looking_right

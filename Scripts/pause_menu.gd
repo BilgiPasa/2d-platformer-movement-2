@@ -27,12 +27,12 @@ func quit_game() -> void:
 	get_tree().quit()
 
 func _on_hide_speed_button_pressed() -> void:
-	if Globals.speed_label_is_hidden: # Show
-		Globals.speed_label_is_hidden = false
+	if Globals.speed_label_hidden: # Show
+		Globals.speed_label_hidden = false
 		show_speed_lbl.emit()
 		hide_speed_button.text = "Hide Speed"
 	else: # Hide
-		Globals.speed_label_is_hidden = true
+		Globals.speed_label_hidden = true
 		hide_speed_lbl.emit()
 		hide_speed_button.text = "Show Speed"
 
