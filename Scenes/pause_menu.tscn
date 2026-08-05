@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkqtxxhg30nid" path="res://Scripts/pause_menu.gd" id="1_emv3i"]
 
-[node name="PauseMenu" type="Control" unique_id=1267843331 node_paths=PackedStringArray("resume_button", "hide_speed_button", "enable_d_jump_btn", "mute_sounds_btn", "version_label")]
+[node name="PauseMenu" type="Control" unique_id=1267843331 node_paths=PackedStringArray("resume_button", "speed_label_on_off_button", "d_jump_on_off_button", "sounds_on_off_button", "version_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,9 +11,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_emv3i")
 resume_button = NodePath("Panel/ResumeButton")
-hide_speed_button = NodePath("Panel/HideSpeedButton")
-enable_d_jump_btn = NodePath("Panel/EnableDJumpBtn")
-mute_sounds_btn = NodePath("Panel/MuteSoundsBtn")
+speed_label_on_off_button = NodePath("Panel/SpeedLabelOnOffButton")
+d_jump_on_off_button = NodePath("Panel/DJumpOnOffButton")
+sounds_on_off_button = NodePath("Panel/SoundsOnOffButton")
 version_label = NodePath("Panel/VersionLabel")
 
 [node name="Panel" type="Panel" parent="." unique_id=1598775993]
@@ -24,15 +24,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="PlayerControlsLabel" type="Label" parent="Panel" unique_id=1845663888]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -289.0
+offset_top = 20.0
+offset_right = -30.0
+offset_bottom = 169.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0.78431374)
+theme_override_font_sizes/font_size = 30
+text = "Player Controls:
+Press D to move right
+Press A to move left
+Press Space to jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="GamePausedLabel" type="Label" parent="Panel" unique_id=742333126]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -297.5
-offset_top = 225.0
-offset_right = 297.5
-offset_bottom = 349.0
+offset_left = -331.0
+offset_top = 175.0
+offset_right = 331.0
+offset_bottom = 312.00018
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 100
 text = "Game Paused"
@@ -45,15 +64,17 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -197.5
-offset_top = -115.0
+offset_top = -165.0
 offset_right = 197.5
-offset_bottom = 30.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../DJumpOnOffButton")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../QuitGameButton")
 focus_next = NodePath("../QuitGameButton")
+focus_previous = NodePath("../SoundsOnOffButton")
 theme_override_font_sizes/font_size = 100
 text = "Resume"
 
@@ -64,76 +85,63 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -186.0
-offset_top = 85.0
-offset_right = 186.0
-offset_bottom = 189.0
+offset_left = -193.5
+offset_top = 60.0
+offset_right = 193.5
+offset_bottom = 169.00012
 grow_horizontal = 2
 grow_vertical = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../ResumeButton")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../EnableDJumpBtn")
-focus_next = NodePath("../HideSpeedButton")
+focus_neighbor_bottom = NodePath("../DJumpOnOffButton")
+focus_next = NodePath("../SpeedLabelOnOffButton")
 focus_previous = NodePath("../ResumeButton")
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 73
 text = "Quit Game"
 
-[node name="HideSpeedButton" type="Button" parent="Panel" unique_id=345498973]
+[node name="SpeedLabelOnOffButton" type="Button" parent="Panel" unique_id=345498973]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 150.0
-offset_top = -191.0
-offset_right = 507.0
-offset_bottom = -100.0
+offset_left = 100.0
+offset_top = -216.0
+offset_right = 606.0001
+offset_bottom = -125.0
 grow_vertical = 0
+focus_neighbor_left = NodePath("../SoundsOnOffButton")
 focus_neighbor_top = NodePath("../QuitGameButton")
-focus_neighbor_right = NodePath("../EnableDJumpBtn")
-focus_next = NodePath("../EnableDJumpBtn")
+focus_neighbor_right = NodePath("../DJumpOnOffButton")
+focus_neighbor_bottom = NodePath("../ResumeButton")
+focus_next = NodePath("../DJumpOnOffButton")
 focus_previous = NodePath("../QuitGameButton")
 theme_override_font_sizes/font_size = 60
-text = "Hide Speed"
+text = "Hide Speed Label"
 
-[node name="InfoLabel" type="Label" parent="Panel/HideSpeedButton" unique_id=1531494073]
+[node name="DJumpOnOffButton" type="Button" parent="Panel" unique_id=588773477]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -111.0
-offset_top = 9.0
-offset_right = 111.0
-offset_bottom = 44.0
+offset_left = -260.0
+offset_top = -216.0
+offset_right = 332.0
+offset_bottom = -125.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 25
-text = "(Horizontal Speed)"
-
-[node name="EnableDJumpBtn" type="Button" parent="Panel" unique_id=588773477]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -296.0
-offset_top = -191.0
-offset_right = 296.0
-offset_bottom = -100.0
-grow_horizontal = 2
-grow_vertical = 0
-focus_neighbor_left = NodePath("../HideSpeedButton")
+focus_neighbor_left = NodePath("../SpeedLabelOnOffButton")
 focus_neighbor_top = NodePath("../QuitGameButton")
-focus_neighbor_right = NodePath("../MuteSoundsBtn")
-focus_next = NodePath("../MuteSoundsBtn")
-focus_previous = NodePath("../HideSpeedButton")
+focus_neighbor_right = NodePath("../SoundsOnOffButton")
+focus_neighbor_bottom = NodePath("../ResumeButton")
+focus_next = NodePath("../SoundsOnOffButton")
+focus_previous = NodePath("../SpeedLabelOnOffButton")
 theme_override_font_sizes/font_size = 60
 text = "Enable Double Jump"
 
-[node name="MuteSoundsBtn" type="Button" parent="Panel" unique_id=1324146529]
+[node name="SoundsOnOffButton" type="Button" parent="Panel" unique_id=1324146529]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -141,14 +149,17 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -488.0
-offset_top = -191.0
+offset_top = -216.0
 offset_right = -100.0
-offset_bottom = -100.0
+offset_bottom = -125.0
 grow_horizontal = 0
 grow_vertical = 0
-focus_neighbor_left = NodePath("../EnableDJumpBtn")
+focus_neighbor_left = NodePath("../DJumpOnOffButton")
 focus_neighbor_top = NodePath("../QuitGameButton")
-focus_previous = NodePath("../EnableDJumpBtn")
+focus_neighbor_right = NodePath("../SpeedLabelOnOffButton")
+focus_neighbor_bottom = NodePath("../ResumeButton")
+focus_next = NodePath("../ResumeButton")
+focus_previous = NodePath("../DJumpOnOffButton")
 theme_override_font_sizes/font_size = 60
 text = "Mute Sounds"
 
@@ -171,6 +182,6 @@ text = "vA.B"
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Panel/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
-[connection signal="pressed" from="Panel/HideSpeedButton" to="." method="_on_hide_speed_button_pressed"]
-[connection signal="pressed" from="Panel/EnableDJumpBtn" to="." method="_on_enable_d_jump_btn_pressed"]
-[connection signal="pressed" from="Panel/MuteSoundsBtn" to="." method="_on_mute_sounds_btn_pressed"]
+[connection signal="pressed" from="Panel/SpeedLabelOnOffButton" to="." method="_on_spd_lbl_on_off_btn_pressed"]
+[connection signal="pressed" from="Panel/DJumpOnOffButton" to="." method="_on_d_jump_on_off_btn_pressed"]
+[connection signal="pressed" from="Panel/SoundsOnOffButton" to="." method="_on_sounds_on_off_btn_pressed"]
