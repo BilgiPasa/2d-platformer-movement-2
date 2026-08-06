@@ -39,7 +39,8 @@ theme_override_font_sizes/font_size = 30
 text = "Player Controls:
 Press D to move right
 Press A to move left
-Press Space to jump"
+Press Space to jump
+Press Left Shift to dash"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -37,11 +37,11 @@ func _on_spd_lbl_on_off_btn_pressed() -> void:
 		speed_label_on_off_button.text = "Show Speed Label"
 
 func _on_d_jump_on_off_btn_pressed() -> void:
-	if Globals.can_double_jump: # Disable
-		Globals.can_double_jump = false
+	if Globals.double_jump_enabled: # Disable
+		Globals.double_jump_enabled = false
 		d_jump_on_off_button.text = "Enable Double Jump"
 	else: # Enable
-		Globals.can_double_jump = true
+		Globals.double_jump_enabled = true
 		d_jump_on_off_button.text = "Disable Double Jump"
 
 func _on_sounds_on_off_btn_pressed() -> void:
