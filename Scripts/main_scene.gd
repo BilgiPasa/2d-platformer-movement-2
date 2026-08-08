@@ -6,8 +6,6 @@ extends Node2D
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	speed_label.process_mode = Node.PROCESS_MODE_INHERIT
-	speed_label.show()
 	pause_menu.process_mode = Node.PROCESS_MODE_DISABLED
 	pause_menu.hide()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
