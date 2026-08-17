@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dracr7g3qxgbp" path="res://Materials/Player.png" id="1_v0iea"]
 [ext_resource type="AudioStream" uid="uid://dch44wgcxbrff" path="res://Materials/Jump11.wav" id="3_vgqql"]
 [ext_resource type="AudioStream" uid="uid://dxswwfk517ody" path="res://Materials/Jump12.wav" id="4_fkybt"]
+[ext_resource type="AudioStream" uid="uid://0dmh6a3ncgp" path="res://Materials/PowerUp11.wav" id="5_fkybt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
 size = Vector2(2, 98)
@@ -19,7 +20,7 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_fkybt"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
 
-[node name="Player" type="CharacterBody2D" unique_id=1068189543 node_paths=PackedStringArray("can_dash_timer", "dashing_timer", "player_sprite", "bump_area", "trail_line", "normal_jump_sound", "double_jump_sound")]
+[node name="Player" type="CharacterBody2D" unique_id=1068189543 node_paths=PackedStringArray("can_dash_timer", "dashing_timer", "player_sprite", "bump_area", "trail_line", "normal_jump_sound", "double_jump_sound", "dash_sound")]
 collision_layer = 2
 script = ExtResource("1_cvnsp")
 can_dash_timer = NodePath("CanDashTimer")
@@ -29,6 +30,7 @@ bump_area = NodePath("PlayerSprite/BumpArea")
 trail_line = NodePath("TrailLine")
 normal_jump_sound = NodePath("NormalJumpSound")
 double_jump_sound = NodePath("DoubleJumpSound")
+dash_sound = NodePath("DashSound")
 
 [node name="CanDashTimer" type="Timer" parent="." unique_id=1388298356]
 
@@ -60,6 +62,10 @@ volume_db = -10.0
 
 [node name="DoubleJumpSound" type="AudioStreamPlayer2D" parent="." unique_id=1650346067]
 stream = ExtResource("4_fkybt")
+volume_db = -10.0
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="." unique_id=1542532757]
+stream = ExtResource("5_fkybt")
 volume_db = -10.0
 
 [connection signal="timeout" from="CanDashTimer" to="." method="_on_can_dash_timer_timeout"]

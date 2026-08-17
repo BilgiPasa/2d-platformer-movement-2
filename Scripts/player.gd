@@ -43,6 +43,7 @@ var double_jumped: bool
 @export var trail_line: Line2D
 @export var normal_jump_sound: AudioStreamPlayer2D
 @export var double_jump_sound: AudioStreamPlayer2D
+@export var dash_sound: AudioStreamPlayer2D
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -144,6 +145,7 @@ func dash() -> void:
 		can_dash_timer.start()
 		dashing = true
 		dashing_timer.start()
+		dash_sound.play()
 
 		if looking_right:
 			velocity.x = DASH_SPEED
