@@ -19,7 +19,7 @@ func _input(event) -> void:
 
 func _physics_process(_delta) -> void:
 	if speed_label.visible:
-		speed_label.text = "Speed: %d" % abs(int(player.velocity.x))
+		speed_label.text = "Speed: %d" % abs(int(player.get_horizontal_speed()))
 
 func pause() -> void:
 	get_tree().paused = true

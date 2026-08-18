@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://vscohm7w4g3w"]
+
+[ext_resource type="Script" uid="uid://da77yqifsx2nt" path="res://Scripts/moving_platform.gd" id="1_anqd2"]
+[ext_resource type="Texture2D" uid="uid://ujv8514o52dc" path="res://Materials/green_square.png" id="1_vvyo4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5s483"]
+size = Vector2(160, 16)
+
+[node name="MovingPlatform" type="CharacterBody2D" unique_id=890599942 node_paths=PackedStringArray("change_direction_timer")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_anqd2")
+change_direction_timer = NodePath("ChangeDirectionTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=240760571]
+scale = Vector2(10, 1)
+texture = ExtResource("1_vvyo4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1476872728]
+shape = SubResource("RectangleShape2D_5s483")
+
+[node name="ChangeDirectionTimer" type="Timer" parent="." unique_id=1853918991]
+
+[connection signal="timeout" from="ChangeDirectionTimer" to="." method="_on_change_direc_timer_timeout"]

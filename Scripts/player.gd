@@ -12,6 +12,7 @@ var horizontal: float = 0
 var move_direction: float
 var looking_right: bool = true
 var bumping: bool
+var movable_ground_under_player: CharacterBody2D = null # For player speed calculation
 
 # Dash
 const DASH_SPEED: int = 1000
@@ -26,7 +27,7 @@ var trail_line_queue: Array[Vector2]
 # Jump
 const JUMP_POWER: int = 750
 const NORMAL_GRAVITY: int = 2500
-const FAST_FALL_GRAVITY: int = 3000
+const FAST_FALL_GRAVITY: int = 4000
 const COYOTE_TIME_SECONDS: float = 0.1
 const JUMP_BUFFER_SECONDS: float = 0.2
 var coyote_time_counter: float
@@ -36,14 +37,14 @@ var grounded: bool
 var double_jumped: bool
 
 # @export Variables
-@export var can_dash_timer: Timer
-@export var dashing_timer: Timer
-@export var player_sprite: Sprite2D
-@export var bump_area: Area2D
 @export var trail_line: Line2D
 @export var normal_jump_sound: AudioStreamPlayer2D
 @export var double_jump_sound: AudioStreamPlayer2D
 @export var dash_sound: AudioStreamPlayer2D
+@export var can_dash_timer: Timer
+@export var dashing_timer: Timer
+@export var player_sprite: Sprite2D
+@export var bump_area: Area2D
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -215,3 +216,19 @@ func execute_jump() -> void:
 func flip() -> void:
 	player_sprite.scale.x *= -1
 	looking_right = !looking_right
+
+func get_horizontal_speed() -> float:
+	if movable_ground_under_player == null:
+		return velocity.x
+	else:
+		return velocity.x + movable_ground_under_player.velocity.x
+
+# On Movable Ground Area Body Entered
+func _on_m_ground_area_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		movable_ground_under_player = body
+
+# On Movable Ground Area Body Exited
+func _on_m_ground_area_body_exited(body: Node2D) -> void:
+	if movable_ground_under_player == body:
+		movable_ground_under_player = null
