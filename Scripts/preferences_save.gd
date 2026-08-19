@@ -1,6 +1,7 @@
 class_name PreferencesSave
 extends Resource
 
+# Pause Menu Preferences
 @export var double_jump_enabled: bool = false
 @export var sounds_muted: bool = false
 @export var speed_label_visible: bool = true
