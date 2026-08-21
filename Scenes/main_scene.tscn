@@ -15,7 +15,7 @@ texture = ExtResource("2_jv6wh")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_jv6wh")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iacmt"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7lsjx"]
 
 [node name="MainScene" type="Node2D" unique_id=915812056 node_paths=PackedStringArray("player", "speed_label", "pause_menu")]
 script = ExtResource("1_52fb6")
@@ -36,19 +36,17 @@ tile_set = SubResource("TileSet_x6ack")
 [node name="MovingPlatform" parent="." unique_id=1377879101 instance=ExtResource("3_6ev3c")]
 position = Vector2(-375, -325)
 
-[node name="RightBorder" type="StaticBody2D" parent="." unique_id=2032027092]
+[node name="Borders" type="StaticBody2D" parent="." unique_id=1048597194]
+
+[node name="RightBorder" type="CollisionShape2D" parent="Borders" unique_id=464587815]
 position = Vector2(550, 0)
 rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_7lsjx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBorder" unique_id=2113422057]
-shape = SubResource("WorldBoundaryShape2D_iacmt")
-
-[node name="LeftBorder" type="StaticBody2D" parent="." unique_id=1151968904]
+[node name="LeftBorder" type="CollisionShape2D" parent="Borders" unique_id=258833955]
 position = Vector2(-550, 0)
 rotation = 1.5707964
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBorder" unique_id=1700822389]
-shape = SubResource("WorldBoundaryShape2D_iacmt")
+shape = SubResource("WorldBoundaryShape2D_7lsjx")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=447177435]
 
